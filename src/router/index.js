@@ -24,7 +24,7 @@ const routes = [
         ]
       },
       {
-        path: 'home',
+        path: '',
         name: 'admin-home',
         component: () => import(/* webpackChunkName: "md" */ '../views/admin/AdminMain.vue')
       },

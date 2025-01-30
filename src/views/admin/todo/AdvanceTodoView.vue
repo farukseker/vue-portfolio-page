@@ -2,8 +2,8 @@
     <Transition>
         <div v-if="loaded" class="row m-0 p-0 h-100 py-2">
         <div class="col-3 h-100 overflow-x-auto">
-            <form @submit.prevent="new_category" class="p-2 mb-3 rounded shadow-sm dark-shadow"  >
-                <input v-model="new_category_text" :class="'form-control dark-input ' + ( new_category_is_invaild ? 'border-2 border-danger shake': '')" type="text" placeholder="New Category">
+            <form @submit.prevent="new_category" class="mb-3 rounded shadow-sm dark-shadow"  >
+                <input v-model="new_category_text" :class="'form-control dark-input bg-transparent text-white ' + ( new_category_is_invaild ? 'border-2 border-danger shake': '')" type="text" placeholder="New Category">
             </form>
             <ul class="list-unstyled">
                 <li 

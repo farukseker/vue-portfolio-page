@@ -3,12 +3,13 @@ import axios from 'axios';
 import { ref } from 'vue'
 import { VMarkdownEditor } from 'vue3-markdown'
 import 'vue3-markdown/dist/style.css'
+import { Vue3JsonEditor } from 'vue3-json-editor'
 
 
 export default{
     name: 'ProjectEditView',
     props: ['slug'],
-    components: { VMarkdownEditor },
+    components: { VMarkdownEditor, Vue3JsonEditor },
     data:()=>{return{
         project: ref(''),
         previous_project: ref(''),
@@ -21,6 +22,10 @@ export default{
         timerId: 0,
         // -pars
         on_update: false,
+        jsonData: {
+        key: "value",
+        list: [1, 2, 3]
+        }
     }},
     methods: {
         echo_context_sync() {
@@ -137,7 +142,7 @@ export default{
 
 <template>
 <section class="row m-0 p-2 h-100">
-    <article class="col-12 col-md-4 col-lg-3 col-xl-2 position-relative h-100 overflow-y-scroll">
+    <article class="col-12 col-md-4 col-lg-3 col-xl-3 position-relative h-100 overflow-y-scroll">
         <button class="btn btn-lg btn-success w-100 rounded-0 border-0" @click="update_project" :disabled="on_update">
             <span v-if="!on_update">{{this.is_new ? 'Create' : 'Save'}}</span>
             <div v-else class="spinner-border text-light" role="status">
@@ -153,6 +158,10 @@ export default{
         <button 
             :class="'w-100 mt-2 btn ' + (project.show ? 'btn-primary': 'btn-outline-primary')"
             @click="project.show = !project.show;update_project()">{{ project.show ? 'Hide' : 'Show' }}
+        </button>
+        <button 
+            :class="'w-100 mt-2 btn ' + (project.is_featured ? 'btn-info': 'btn-outline-info')"
+            @click="project.is_featured = !project.is_featured;update_project()">{{ project.is_featured ? 'Feat' : 'Nativ' }}
         </button>
         
         <div class="" name="edit">
@@ -192,7 +201,6 @@ export default{
                 <strong class="my-auto">Tag's</strong>
                 <hr class="ms-2 w-100">
             </div>
-            
             <ul class="list-unstyled overflow-y-auto" style="max-height: 20vh;">
                 <li 
                 v-for="(tag,index) in content_type_tags" 
@@ -201,6 +209,18 @@ export default{
                 @click="tag.slected = !tag.slected"
                 >{{ tag.name }}</li>
             </ul>
+
+            <div class="d-flex">
+                <strong class="my-auto" style="min-width: max-content;">JSON' fields</strong>
+                <hr class="ms-2 w-100">
+            </div>
+            <Vue3JsonEditor
+                    v-model="project.custom_data"
+                    :show-btns="true"
+                    :expandedOnStart="true"
+                    @json-change="update_project()"
+                    />
+
         </div>
     </article>
     <article class="col me-0 pe-0 shadow-sm">
