@@ -2,7 +2,7 @@
 </script>
 
 <template>
-<section class="d-block d-md-flex dart-pointer" style="height: 100vh">
+<section class="d-block d-md-flex dart-pointer" style="">
     <article class="justify-content-center m-auto col-8 col-md-6 col-xl-3" style="background: transparent!important;backdrop-filter:blur(3px);-webkit-backdrop-filter:blur(3px);">
       <RouterView />
     </article>

@@ -1,88 +1,12 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import HomeView from "@/views/HomeView.vue";
-import PortfolioView from "@/views/PortfolioView.vue";
 import NotFound from "@/views/NotFound.vue";
 
 const routes = [
   {
-    path: '',
-    name: 'portfolio',
-    component: PortfolioView,
-    children:[
-      {
-        path: '',
-        name: 'home',
-        component: HomeView,
-      },
-      {
-        path: '/about',
-        name: 'about',
-        // route level code-splitting
-        // this generates a separate chunk (about.[hash].js) for this route
-        // which is lazy-loaded when the route is visited.
-        component: () => import(/* webpackChunkName: "about" */ '../views/AboutView.vue')
-      },
-      {
-        path: '/resume',
-        name: 'resume',
-        component: () => import(/* webpackChunkName: "projects" */ '../views/ResumeView.vue'),
-      },
-      {
-        path: '/contact',
-        name: 'contact',
-        component: () => import(/* webpackChunkName: "projects" */ '../views/ContactView.vue'),
-      },
-      {
-        path: '/hire',
-        name: 'hire',
-        component: () => import(/* webpackChunkName: "projects" */ '../views/HireMe.vue'),
-      },
-      {
-        path: '/projects',
-        name: 'projects',
-        component: () => import(/* webpackChunkName: "projects" */ '../views/ProjectsView.vue'),
-       },
-      {
-        path: '/project/:slug',
-        name: 'project',
-        component: () => import(/* webpackChunkName: "projects" */ '../views/ProjectView.vue'),
-        props: true
-      },
-      {
-        path: '/blog',
-        name: 'blog',
-        component: () => import(/* webpackChunkName: "auth" */ '../views/blog/BlogView.vue'),
-        children: [
-          {
-            path: '',
-            name: 'blog-list',
-            component: () => import(/* webpackChunkName: "login" */ '../views/blog/BlogsListView.vue')
-          },      {
-            path: ':slug',
-            name: 'blog-content',
-            component: () => import(/* webpackChunkName: "register" */ '../views/blog/BlogContentView.vue'),
-            props: true
-          }
-        ]
-      },
-      {
-        path: '/game',
-        name: 'game',
-        component: () => import(/* webpackChunkName: "games" */ '../views/game/GameView.vue'),
-        children: [
-          {
-            path: '',
-            name: 'games',
-            component: () => import(/* webpackChunkName: "game" */ '../views/game/GameListView.vue'),
-          },
-          {
-            path: ':slug',
-            name: 'game-video',
-            component: () => import(/* webpackChunkName: "game" */ '../views/game/GameVideoView.vue'),
-            props: true
-          }
-        ]
-      },
+    path: '/',
+    name: 'admin',
+    component: () => import(/* webpackChunkName: "md" */ '../views/admin/AdminView.vue'),
+    children: [
       {
         path: '/auth',
         name: 'auth',
@@ -99,14 +23,6 @@ const routes = [
           }
         ]
       },
-    ]
-  },
-  
-  {
-    path: '/admin',
-    name: 'admin',
-    component: () => import(/* webpackChunkName: "md" */ '../views/admin/AdminView.vue'),
-    children: [
       {
         path: 'home',
         name: 'admin-home',
