@@ -215,11 +215,12 @@ export default{
                 <hr class="ms-2 w-100">
             </div>
             <Vue3JsonEditor
-                    v-model="project.custom_data"
-                    :show-btns="true"
-                    :expandedOnStart="true"
-                    @json-change="update_project()"
-                    />
+                v-model="project.custom_data"
+                :show-btns="true"
+                :expandedOnStart="true"
+                @json-change="update_project()"
+            />
+            <textarea v-model="project.custom_data"></textarea>
 
         </div>
     </article>
