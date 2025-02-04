@@ -28,6 +28,12 @@ export default{
         }
     }},
     methods: {
+        addNewInput(index) {
+            // Kullanıcı son inputa bir şey yazdığında yeni bir boş input ekle
+            if (this.project.custom_data.images[index] !== "" && index === this.project.custom_data.images.length - 1) {
+                this.project.custom_data.images.push("");
+            }
+        },
         echo_context_sync() {
             clearTimeout(this.timerId);
             this.timerId = setTimeout(() => {
@@ -210,6 +216,28 @@ export default{
                 >{{ tag.name }}</li>
             </ul>
 
+            <!--Gtihub link-->
+            <label class="ms-2">Custom: <i class="fa-solid fa-github"></i> GitHub Link</label>
+            <input v-model="project.custom_data.github_link" class="mt-1 form-control" placeholder="Github" type="url">
+            <!--Gtihub link END-->
+
+            <!--Demo link-->
+            <label class="ms-2">Custom: <i class="fa-solid fa-github"></i> GitHub Link</label>
+            <input v-model="project.custom_data.demo_link" class="mt-1 form-control" placeholder="Github" type="url">
+            <!--Demo link END-->
+
+            <!--Gtihub images-->
+            <label class="ms-2">Custom: images</label>
+            <div v-for="(image, index) in project.custom_data.images" :key="index">
+            <input 
+                v-model="project.custom_data.images[index]" 
+                @input="addNewInput(index)"
+                class="mt-1 form-control" 
+                placeholder="Images URL"
+            >
+            </div>
+            <!--Gtihub images END-->
+            
             <div class="d-flex">
                 <strong class="my-auto" style="min-width: max-content;">JSON' fields</strong>
                 <hr class="ms-2 w-100">
